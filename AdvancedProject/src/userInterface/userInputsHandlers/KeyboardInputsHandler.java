@@ -1,4 +1,4 @@
-package userInterface;
+package userInterface.userInputsHandlers;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

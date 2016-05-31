@@ -3,6 +3,7 @@ package application;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
+import userInterface.graphic3DHandler.Transform;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
@@ -36,6 +37,10 @@ public class Main extends Application
 			BorderPane root = new BorderPane();
 			Scene scene = new Scene(root, WINDOW_RESOLUTION_WIDTH, WINDOW_RESOLUTION_HEIGHT);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			
+			Transform anchor = new Transform();
+			
+			System.out.print(anchor.toString());
 			
 			window.setScene(scene);
 			window.setTitle(WINDOW_TITLE);
