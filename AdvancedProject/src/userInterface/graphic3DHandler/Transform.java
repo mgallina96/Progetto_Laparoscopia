@@ -106,6 +106,26 @@ public class Transform extends Group
         scale.setY(1.0);
         scale.setZ(1.0);
     }
+    
+    public void lookAt
+    
+    /**
+     * Returns the distance between two positions.
+     * 
+     * @param a first position
+     * @param b second position
+     * @return the distance between a and b
+     */
+    public static double distance(Translate a, Translate b)
+    {
+    	double distance = 0;
+    	
+    	distance = Math.sqrt((a.getX() - b.getX()) * (a.getX() - b.getX()) + 
+    							(a.getY() - b.getY()) * (a.getY() - b.getY()) + 
+    							(a.getZ() - b.getZ()) * (a.getZ() - b.getZ()));
+    	
+    	return distance;
+    }
 
     @Override 
     public String toString() 
