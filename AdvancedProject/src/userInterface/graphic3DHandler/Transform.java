@@ -32,6 +32,7 @@
 
 package userInterface.graphic3DHandler;
 
+import javafx.geometry.Point3D;
 import javafx.scene.Group;
 import javafx.scene.transform.Scale;
 import javafx.scene.transform.Translate;
@@ -107,7 +108,31 @@ public class Transform extends Group
         scale.setZ(1.0);
     }
     
-    public void lookAt
+    /**
+     * This method changes the rotation axes to make the x-axis loooking at the target position.
+     * 
+     * @param target the target position
+     * @author Manuel Gallina
+     */
+    public void lookAt(Translate target)
+    {
+    	double xp = this.position.getX();	//X axis position.
+    	double yp = this.position.getY();	//Y axis position.
+    	double zp = this.position.getZ();	//Z axis position.
+    	
+    	double xt = target.getX();	//X axis target position.
+    	double yt = target.getY();	//Y axis target position.
+    	double zt = target.getZ();	//Z axis target position.
+    	
+    	Point3D xAxisDirection = new Point3D(xt, yt, zt);
+    	Point3D yAxisDirection = new Point3D(xp + (zp - zt)/(yp - yt), yp + (zp -zt)/(xp - xt), zt - (yp - yt)/(xp - xt) - (xp -xt)/(yp - yt));
+    	Point3D zAxisDirection = new Point3D(xp - 1/(xp -xt), yp + 1/(yp - yt), zp);
+    	
+    	this.rotation.x.setAxis(xAxisDirection);
+    	this.rotation.y.setAxis(yAxisDirection);
+    	this.rotation.z.setAxis(zAxisDirection);
+    	
+    }
     
     /**
      * Returns the distance between two positions.
@@ -115,6 +140,7 @@ public class Transform extends Group
      * @param a first position
      * @param b second position
      * @return the distance between a and b
+     * @author Manuel Gallina
      */
     public static double distance(Translate a, Translate b)
     {
