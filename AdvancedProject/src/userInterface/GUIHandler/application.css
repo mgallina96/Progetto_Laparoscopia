@@ -1,1 +1,42 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+#main-window{
+	-fx-background-color: white ; 
+	-fx-padding: 10.0px ; 	
+}
+
+#lateral-window{
+	-fx-pref-width: 350.0px ;
+	-fx-pref-height: 768px ;  
+	-fx-alignment: top-center ;
+	
+	-fx-background-color: lightyellow ; 
+	
+	-fx-padding: 10.0px ; 
+	-fx-border-color: lightgray ;
+	-fx-border-style: solid ;
+	-fx-border-width: 3.0px ;
+	
+	-fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ) ;
+}
+
+#patient-info{  
+	-fx-alignment: top-center ;
+	-fx-spacing: 100.0px ; 
+	
+	-fx-background-color: white ;
+	
+	-fx-padding: 10.0px ;  
+	-fx-border-style: solid ;
+	-fx-border-width: 1.0px ;
+	-fx-border-color: black ; 
+}
+
+#info-labels{
+	-fx-alignment: center-left ;
+}
+
+.label{
+	-fx-text-fill: blue ;
+}
+

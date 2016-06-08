@@ -1,6 +1,12 @@
 package userInterface.GUIHandler;
 
 import javafx.stage.*;
+
+import java.util.Vector;
+
+import content.Patient;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.*;
 import javafx.geometry.*;
 import javafx.scene.layout.*;
@@ -17,30 +23,54 @@ public class WindowHandler
 {
 	
 	private static final String WINDOW_TITLE = "Laparoscopy";
-	private static final double WINDOW_RESOLUTION_WIDTH = 800;
-	private static final double WINDOW_RESOLUTION_HEIGHT = 800;
+	private static final double WINDOW_RESOLUTION_WIDTH = 1280;
+	private static final double WINDOW_RESOLUTION_HEIGHT = 768;
+	private static final String PATIENT_INFO_TITLE = "Informazioni del Paziente\n";
+	
+	private ObservableList<String> toolList = FXCollections.observableArrayList("Bisturi", "Pinza", "Aspiratore");
 	
 		
-	public WindowHandler(Stage stage)
+	public WindowHandler(Stage stage, Patient patient)
 	{	
 		stage.setTitle(WINDOW_TITLE);
 		
-		BorderPane window = new BorderPane();
+		BorderPane mainWindow = new BorderPane();
+		mainWindow.setId("main-window");
 		
-		GridPane grid = new GridPane();		
-		HBox hbox = new HBox();
-		Text message = new Text("Prova");
+		VBox lateralWindow = new VBox();
+		lateralWindow.setId("lateral-window");
 		
-		grid.add(message, 0, 0);
+			lateralWindow.getChildren().add(new Text(PATIENT_INFO_TITLE));
 		
-		hbox.setPadding(new Insets(10, 10, 10, 10));
-		hbox.setSpacing(10);
+			HBox patientInfo = new HBox();
+			patientInfo.setId("patient-info");
+			
+				VBox labels = new VBox();
+				labels.setId("info-labels");
+				
+					labels.getChildren().add(new Label("Età"));
+					labels.getChildren().add(new Label("Altezza"));
+					labels.getChildren().add(new Label("Peso"));
+					
+				VBox data = new VBox();
+				labels.setId("info-data");
+				
+					data.getChildren().add(new Text("65"));
+					data.getChildren().add(new Text("1.70m"));
+					data.getChildren().add(new Text("65Kg"));
 		
-		grid.getChildren().add(hbox);
+			patientInfo.getChildren().addAll(labels, data);
+			
+			ChoiceBox toolSelector = new ChoiceBox();
+			toolSelector.setItems(toolList);
 		
-		window.setCenter(grid);
+		lateralWindow.getChildren().addAll(patientInfo, toolSelector);
 		
-		Scene scene = new Scene(window, WINDOW_RESOLUTION_WIDTH, WINDOW_RESOLUTION_HEIGHT);
+		mainWindow.setRight(lateralWindow);
+		
+		Scene scene = new Scene(mainWindow, WINDOW_RESOLUTION_WIDTH, WINDOW_RESOLUTION_HEIGHT);
+		
+		scene.getStylesheets().add(WindowHandler.class.getResource("application.css").toExternalForm());
 		stage.setScene(scene);
 		stage.show();
 

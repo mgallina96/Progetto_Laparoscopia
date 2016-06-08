@@ -1,5 +1,6 @@
 package application;
 	
+import content.Patient;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
@@ -23,8 +24,10 @@ public class Main extends Application
 	public void start(Stage primaryStage) 
 	{
 		try 
-		{			
-			WindowHandler window = new WindowHandler(primaryStage);
+		{	
+			Patient patient = new Patient();
+			
+			WindowHandler window = new WindowHandler(primaryStage, patient);
 			
 			Transform anchor = new Transform();
 			
